@@ -1,9 +1,14 @@
-@import "./styles/utils";
+// /config/의 webpack.config.js를 수정하여 'utils.scss'로 바로 사용할 수 있게 변경
+@import "utils.scss";
 
 .SassComponent {
   display: flex;
   .box {
-    background: red; // 일반 CSS 에선 .SassComponent .box 와 마찬가지
+    background: $oc-gray-2; // 일반 CSS 에선 .SassComponent .box 와 마찬가지
+    @include media("<768px") {
+      background: $oc-gray-9;
+    }
+
     cursor: pointer;
     transition: all 0.3s ease-in;
     &.red {
