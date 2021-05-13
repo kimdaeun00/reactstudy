@@ -10,9 +10,11 @@ const getAverage = (numbers) => {
 const Average = () => {
   const [list, setList] = useState([]);
   const [number, setNumber] = useState("");
+  // useRef는 무조건 앞에서 선언해줘야 하나? 왜 const로 굳이 또 만들었는지 용도를 모르겠다
+  // => 함수형 컴포넌트니까 그냥 클래스형 컴포넌트에서 썼던 ref와는 다르게 useRef라는 hook을 사용하여 ref하는 것
   const inputEl = useRef(null);
 
-  //   useCallback => 함수 재사용 시 유용 useMemo=> 값 재사용 시 유용
+  //   useCallback => 함수 재사용 시 유용, useMemo=> 값 재사용 시 유용
   //   useCallback  1st param : 생성하고자 하는 함수, 2st param : 어떤 것의 변화를 볼 지 list
   //   컴포넌트가 처음 생성될 때에만 setNumber함수 생성
   const onChange = useCallback((e) => {
@@ -41,7 +43,7 @@ const Average = () => {
           <li key={index}>{value}</li>
         ))}
       </ul>
-      <b>평균값:</b> {avg}
+      <b>평균값 : </b> {avg}
     </div>
   );
 };
