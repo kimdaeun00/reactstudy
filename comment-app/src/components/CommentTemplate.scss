@@ -1,0 +1,25 @@
+.CommentTemplate {
+  margin-right: auto;
+  margin-top: 4rem;
+  overflow: hidden;
+  font-family: 'D2Coding';
+  .app-title {
+    margin-left: 4rem;
+    color: rgb(89, 123, 179);
+    height: 4rem;
+    font-size: 2.3rem;
+    font-family: 'Consolas';
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+  }
+  .content {
+    width: 600px;
+    margin-left: 3rem;
+    border-radius: 15px;
+    padding: 1rem;
+    font-size: 1.3rem;
+    border-color: black;
+    background: rgb(239, 239, 239);
+  }
+}
