@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react-icons": "^4.2.0"
+  }
+}
