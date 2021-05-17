@@ -39,4 +39,51 @@
       border-style: inset;
     }
   }
+
+  .CommentInsert {
+    display: flex;
+    align-items: center;
+    input {
+      background: white;
+      outline: none;
+      height: 25px;
+      border-radius: 0.5rem;
+      border-style: solid;
+      border-color: rgb(218, 217, 217);
+      border-width: 2px;
+
+      padding: 0.5rem;
+      font-family: 'Consolas';
+      font-size: 1rem;
+      color: rgb(112, 111, 111);
+      &::placeholder {
+        color: #cccdcf;
+      }
+      // 버튼을 제외한 영역을 모두 차지하기
+      flex: 1;
+    }
+    button {
+      background: none;
+      outline: none;
+      width: 4rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      border-style: outset;
+      border-color: rgb(184, 204, 231);
+      border-width: 4px;
+      background: #94b9db;
+      color: white;
+
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.1s background ease-in;
+      &:hover {
+        background: #739ec9;
+        border-style: inset;
+      }
+    }
+  }
 }
