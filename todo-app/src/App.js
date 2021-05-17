@@ -3,8 +3,20 @@ import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i <= 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일 ${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
+
 const App = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(createBulkTodos);
   // DOM에 nextId가 쓰이는 것도 아닌데 왜 useRef를 쓰는건지 모르겠음
   // <TodoInsert>에 쓰이는 onInsert안에다가 써야 해서 그런가
   // useRef가 특정 DOM을 선택하는 것 외에도 컴포넌트 안에서 조회 및 수정할 수 있는 변수를 관리할 때 쓴다고 함
@@ -24,32 +36,26 @@ const App = () => {
         text,
         checked: false,
       };
-      setTodos(todos.concat(todo));
+      setTodos((todos) => todos.concat(todo));
       nextId.current += 1;
     },
-    [todos],
+    [],
   );
 
   // remove가 필요할 때와 todos에 변화가 생겼을 시 그 id만 제외하고 다시 가져오기
-  const onRemove = useCallback(
-    (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos],
-  );
+  const onRemove = useCallback((id) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  }, []);
 
   // 완료된 todo의 id 받아옴 => 완료된 id만 todo의 checked member를 바꿔준다.
   // 여러 멤버로 되어 있는 object에서 멤버 하나를 바꾸려면 ...todo 로 모든 멤버를 받아와준 후에 변경한다.
-  const onToggle = useCallback(
-    (id) => {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
-        ),
-      );
-    },
-    [todos],
-  );
+  const onToggle = useCallback((id) => {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+      ),
+    );
+  }, []);
 
   return (
     <TodoTemplate>
