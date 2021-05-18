@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { MdSend } from 'react-icons/md';
-import { FaRegSmileWink, FaRegAngry, FaRegSadTear } from 'react-icons/fa';
 import './CommentInsert.scss';
 import './CommentInfo.scss';
+import FaceButtons from './FaceButtons';
 
 const CommentInsert = ({ onInsert }) => {
   const [username, setUsername] = useState('');
@@ -41,22 +41,19 @@ const CommentInsert = ({ onInsert }) => {
   return (
     <>
       <form className="CommentInfo" onSubmit={onSubmit}>
-        <input
-          placeholder="username"
-          value={username}
-          onChange={onUserChange}
-        />
-        <input placeholder="password" value={password} onChange={onPwChange} />
-        <button type="button" onClick={() => onFaceChange(1)}>
-          <FaRegSmileWink /> {/*1*/}
-        </button>
-        <button type="button" onClick={() => onFaceChange(2)}>
-          <FaRegAngry /> {/*2*/}
-        </button>
-        <button type="button" onClick={() => onFaceChange(3)}>
-          <FaRegSadTear /> {/*3*/}
-        </button>
-
+        <div className="Info">
+          <input
+            placeholder="username"
+            value={username}
+            onChange={onUserChange}
+          />
+          <input
+            placeholder="password"
+            value={password}
+            onChange={onPwChange}
+          />
+          <FaceButtons onFaceChange={onFaceChange} />
+        </div>
         <div className="CommentInsert">
           <input
             placeholder="write any comments."

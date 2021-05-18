@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FaRegSmileWink, FaRegAngry, FaRegSadTear } from 'react-icons/fa';
-
 import './CommentListItem.scss';
 
 const CommentListItem = ({ comment, onRemove }) => {
   const { id, username, password, face, text } = comment;
-
   const [typedPw, setTypedPw] = useState('');
+
   const onChange = (e) => {
     setTypedPw(e.target.value);
     e.preventDefault();

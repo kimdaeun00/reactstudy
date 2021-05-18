@@ -8,17 +8,11 @@ const checkEmpty = ({ username, password, face, text }) => {
   const checkpw = password !== '';
   const checkface = face !== 0;
   const checktext = text !== '';
+
   if (checkusername && checkpw && checkface && checktext) {
     return false;
   }
   return true;
-};
-
-const checkPw = ({ password, typedPw }) => {
-  if (typedPw === '') {
-    return false;
-  }
-  return password === typedPw;
 };
 
 const App = () => {
@@ -43,13 +37,12 @@ const App = () => {
   }, []);
 
   const onRemove = useCallback(({ id, password, typedPw }) => {
-    const isRightPW = checkPw({ password, typedPw });
-    if (isRightPW) {
+    if (password === typedPw) {
       setComments((comments) =>
         comments.filter((comment) => comment.id !== id),
       );
     } else {
-      alert('Wrong Password');
+      alert('Wrong Password!');
     }
   }, []);
 
