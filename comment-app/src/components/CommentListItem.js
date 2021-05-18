@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FaRegSmileWink, FaRegAngry, FaRegSadTear } from 'react-icons/fa';
 
@@ -6,6 +6,12 @@ import './CommentListItem.scss';
 
 const CommentListItem = ({ comment, onRemove }) => {
   const { id, username, password, face, text } = comment;
+
+  const [typedPw, setTypedPw] = useState('');
+  const onChange = (e) => {
+    setTypedPw(e.target.value);
+    e.preventDefault();
+  };
 
   return (
     <div className="CommentListItem">
@@ -21,9 +27,10 @@ const CommentListItem = ({ comment, onRemove }) => {
           )}
         </div>
       </div>
-      <div className="text">'{text}</div>
-      <div className="remove" onClick={() => onRemove(id)}>
-        <RiDeleteBinLine />
+      <div className="text">{text}</div>
+      <div className="remove">
+        <RiDeleteBinLine onClick={() => onRemove({ id, password, typedPw })} />
+        <input className="password" value={typedPw} onChange={onChange}></input>
       </div>
     </div>
   );

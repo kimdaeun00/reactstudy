@@ -38,6 +38,12 @@
       background: #e0e0e0;
       border-style: inset;
     }
+
+    &:focus {
+      color: white;
+      background-color: rgb(80, 81, 131);
+      border-style: inset;
+    }
   }
 
   .CommentInsert {

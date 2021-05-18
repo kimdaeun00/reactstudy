@@ -3,6 +3,24 @@ import CommentTemplate from './components/CommentTemplate';
 import CommentInsert from './components/CommentInsert';
 import CommentList from './components/CommentList';
 
+const checkEmpty = ({ username, password, face, text }) => {
+  const checkusername = username !== '';
+  const checkpw = password !== '';
+  const checkface = face !== 0;
+  const checktext = text !== '';
+  if (checkusername && checkpw && checkface && checktext) {
+    return false;
+  }
+  return true;
+};
+
+const checkPw = ({ password, typedPw }) => {
+  if (typedPw === '') {
+    return false;
+  }
+  return password === typedPw;
+};
+
 const App = () => {
   const [comments, setComments] = useState([]);
   const nextId = useRef(1);
@@ -15,12 +33,24 @@ const App = () => {
       face,
       text,
     };
-    setComments((comments) => comments.concat(comment));
-    nextId.current += 1;
+    const isEmpty = checkEmpty({ username, password, face, text });
+    if (isEmpty) {
+      alert('All informations should be filled.');
+    } else {
+      setComments((comments) => comments.concat(comment));
+      nextId.current += 1;
+    }
   }, []);
 
-  const onRemove = useCallback((id) => {
-    setComments((comments) => comments.filter((comment) => comment.id !== id));
+  const onRemove = useCallback(({ id, password, typedPw }) => {
+    const isRightPW = checkPw({ password, typedPw });
+    if (isRightPW) {
+      setComments((comments) =>
+        comments.filter((comment) => comment.id !== id),
+      );
+    } else {
+      alert('Wrong Password');
+    }
   }, []);
 
   return (
