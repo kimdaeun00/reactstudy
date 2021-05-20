@@ -3,24 +3,12 @@ import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 
-function createBulkTodos() {
-  const array = [];
-  for (let i = 1; i <= 2500; i++) {
-    array.push({
-      id: i,
-      text: `할 일 ${i}`,
-      checked: false,
-    });
-  }
-  return array;
-}
-
 const App = () => {
-  const [todos, setTodos] = useState(createBulkTodos);
+  const [todos, setTodos] = useState([]);
   // DOM에 nextId가 쓰이는 것도 아닌데 왜 useRef를 쓰는건지 모르겠음
   // <TodoInsert>에 쓰이는 onInsert안에다가 써야 해서 그런가
   // useRef가 특정 DOM을 선택하는 것 외에도 컴포넌트 안에서 조회 및 수정할 수 있는 변수를 관리할 때 쓴다고 함
-  // 원래 컴포넌트 내에서의 변수는 리렌더링 되고 난 이후에 조회할 수 있는데, useRef는 설정 후 리렌더링 필요없이 바로 조회 가능
+  // 원래 컴포넌트 내에서의 변수는 리렌더링 되고 난 이후에 조회할 수 있는데, useRef는 설정 후 리렌더링 필요없이 바로 조회 가능 => 최적화를 위해서인듯?
   const nextId = useRef(4);
 
   // 함수들 다 useCallback으로 감싸는 이유 : 컴포넌트의 성능 아끼기
