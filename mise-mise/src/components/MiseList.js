@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MiseItem from "./MiseItem";
 import styled from "styled-components";
-import axiios from "axios";
+import axios from "axios";
 
 const MiseListBlock = styled.div`
   @media screen {

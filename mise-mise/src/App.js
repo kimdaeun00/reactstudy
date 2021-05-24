@@ -1,31 +1,56 @@
-import React, { useState } from "react";
-import axios from "axios";
-import MiseList from "./components/MiseList";
-const App = () => {
-  return <MiseList />;
-};
+import React from "react";
+import styled from "styled-components";
+import Country from "./components/Country";
 
-// const App = () => {
-//   const [data, setData] = useState(null);
-//   const onClick = async () => {
-//     try {
-//       const API_KEY = "ebd473cf-b3d6-45e4-b70a-8ef936c889ef";
-//       const response = await axios.get(
-//         `http://api.airvisual.com/v2/city?city=Chilgok&state=Gyeongsangbuk-do&country=South%20Korea&key=${API_KEY}`
-//       );
-//       setData(response.data);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-//   return (
-//     <div>
-//       <div>
-//         <button onClick={onClick}>불러오기</button>
-//       </div>
-//       {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} />}
-//     </div>
-//   );
-// };
+const Country = styled.button`
+  margin-top: 1rem;
+  color: black;
+  background-color: white;
+  margin: 0.1rem;
+  display: flex;
+  font-family: "Consolas";
+  &:hover {
+    background-color: darkseagreen;
+  }
+`;
+const CountryList = styled.div`
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  color: black;
+  font-family: "Consolas";
+`;
+const Countries = [
+  {
+    name: "South Korea",
+  },
+  {
+    name: "USA",
+  },
+  {
+    name: "Germany",
+  },
+  {
+    name: "Hong Kong SAR",
+  },
+  {
+    name: "Austrailia",
+  },
+];
+
+const App = () => {
+  return (
+    <div>
+      <CountryList>
+        Select Country.
+        {Countries.map((c) => (
+          <Country key={c.name} name={c.name} to={`/${c.name}`}>
+            {c.name}
+          </Country>
+        ))}
+      </CountryList>
+    </div>
+  );
+};
 
 export default App;
