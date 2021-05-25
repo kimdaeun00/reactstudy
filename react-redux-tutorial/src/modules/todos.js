@@ -6,14 +6,9 @@ const INSERT = 'todos/INSERT';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
 
-export const changeInput = createAction(CHANGE_INPUT, (input) => input);
-
 // // action 함수 정의 (다 export해줌)
-// // 이번에는 parameter가 들어옴. action 객체 안에 추가 필드
-// export const changeInput = (input) => ({
-//   type: CHANGE_INPUT,
-//   input,
-// });
+//추가적인 field는 createAction의 두 번째 인자로..
+export const changeInput = createAction(CHANGE_INPUT, (input) => input);
 
 let id = 3;
 export const insert = createAction(INSERT, (text) => ({
@@ -21,26 +16,9 @@ export const insert = createAction(INSERT, (text) => ({
   text,
   done: false,
 }));
-// // insert를 하는 게
-// export const insert = (text) => ({
-//   type: INSERT,
-//   todo: {
-//     id: id++,
-//     text,
-//     done: false,
-//   },
-// });
 
 export const toggle = createAction(TOGGLE, (id) => id);
-// export const toggle = (id) => ({
-//   type: TOGGLE,
-//   id,
-// });
 export const remove = createAction(REMOVE, (id) => id);
-// export const remove = (id) => ({
-//   type: REMOVE,
-//   id,
-// });
 
 // 초기 상태 정의
 const initialState = {
@@ -51,8 +29,11 @@ const initialState = {
   ],
 };
 
+// 리듀서 함수 정의
 const todos = handleActions(
   {
+    //produce : immer에서 불변성 유지 위해 사용
+    // 추가적인 field는 payload:~로 사용
     [CHANGE_INPUT]: (state, { payload: input }) =>
       produce(state, (draft) => {
         draft.input = input;
@@ -74,35 +55,5 @@ const todos = handleActions(
   },
   initialState,
 );
-
-// // 리듀서 함수 정의
-// function todos(state = initialState, action) {
-//   switch (action.type) {
-//     case CHANGE_INPUT:
-//       return {
-//         ...state,
-//         input: action.input,
-//       };
-//     case INSERT:
-//       return {
-//         ...state,
-//         todos: state.todos.concat(action.todo),
-//       };
-//     case TOGGLE:
-//       return {
-//         ...state,
-//         todos: state.todos.map((todo) =>
-//           todo.id === action.id ? { ...todo, done: !todo.done } : todo,
-//         ),
-//       };
-//     case REMOVE:
-//       return {
-//         ...state,
-//         todos: state.todos.filter((todo) => todo.id !== action.id),
-//       };
-//     default:
-//       return state;
-//   }
-// }
 
 export default todos;

@@ -14,6 +14,8 @@ const initialState = {
   number: 0,
 };
 
+// // 리듀서 함수 : action을 실제로 실행하는..
+// // 처음 받는 parameter : 초기 state, action(increase, decrease)
 const counter = handleActions(
   {
     [INCREASE]: (state, action) => ({ number: state.number + 1 }),
@@ -22,24 +24,6 @@ const counter = handleActions(
 
   initialState,
 );
-
-// // 리듀서 함수 : action을 실제로 실행하는..
-// // 처음 받는 parameter : 초기 state, action(increase, decrease)
-// function counter(state = initialState, action) {
-//   switch (action.type) {
-//     case INCREASE:
-//       return {
-//         // 왜 여기서 spread 안써주지..?
-//         number: state.number + 1,
-//       };
-//     case DECREASE:
-//       return {
-//         number: state.number - 1,
-//       };
-//     default:
-//       return state;
-//   }
-// }
 
 // export default는 1개만 내보낼 수 있다.
 // action함수 (increase, decrease) 는 export default 말고 export를 했음

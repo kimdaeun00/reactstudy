@@ -26,7 +26,7 @@ const Todos = ({
   onRemove,
 }) => {
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //submit을 누르고 나서 새로고침 안되게 막는 용도
     onInsert(input);
     onChangeInput('');
   };
